@@ -14,12 +14,15 @@ jobs:
           GIT_BRANCH=${GITHUB_BASE_REF:-${GITHUB_REF#refs/heads/}}
           echo "ENV=$GIT_BRANCH" >> $GITHUB_ENV
 
-      - run: yarn
-
       - run: echo $ENV
+
+      - shell: bash
+        run: |
+          echo 1
+          echo 2
 
       - run: echo works
         if: env.ENV == 'main'
 
       - run: echo works 2
-        if: env.ENV != 'main'
+        if: env.ENV != 'main2'
